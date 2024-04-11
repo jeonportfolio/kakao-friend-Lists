@@ -1,4 +1,5 @@
-import { Text, TouchableOpacity, View } from "react-native";
+import React from 'react';
+import { View, Text, TouchableOpacity } from "react-native";
 import { MaterialIcons } from '@expo/vector-icons';
 
 export default (props) => {
@@ -6,8 +7,8 @@ export default (props) => {
         <View style={{ flexDirection: "row", justifyContent: "space-between"}}>
             <Text style={{ color: "grey" }}>친구{props.friendProfileLen}</Text>
 
-            <TouchableOpacity onPress={props.onPress}>
-                <MaterialIcons name="keyboard-arrow-down" size={24} color="lightgrey" />
+            <TouchableOpacity onPress={props.onPressArrow}>
+                <MaterialIcons name={props.isOpened ? "keyboard-arrow-up" :"keyboard-arrow-down"} size={24} color="lightgrey" />
             </TouchableOpacity>
         </View>
     );
