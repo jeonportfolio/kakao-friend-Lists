@@ -11,5 +11,6 @@ export default (props) => {
                 <MaterialIcons name={props.isOpened ? "keyboard-arrow-up" :"keyboard-arrow-down"} size={24} color="lightgrey" />
             </TouchableOpacity>
         </View>
+    
     );
 };

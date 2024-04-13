@@ -8,6 +8,7 @@ import FriendSection from './src/FriendSection';
 import FriendList from './src/FriendList';
 import Profile from './src/Profile';
 import Header from './src/Header';
+import TabBar from './src/TabBar';
 
 
 
@@ -18,6 +19,8 @@ const statusBarHeight = getStatusBarHeight(true);
 export default function App() {
 
     const [isOpened, setIsOpened] = useState(true);
+    const [selectedTabIdx, setSelectedTabIdx ] = useState(0);
+
 
     const onPressArrow = () => {
         setIsOpened(!isOpened);
@@ -25,6 +28,10 @@ export default function App() {
 
   return (
         <View style={styles.container}>
+          <View style={{ 
+            flex: 1, 
+            paddingHorizontal: 15,
+          }}>   
             <Header/>
 
             <Margin height={10}/>
@@ -52,6 +59,12 @@ export default function App() {
               isOpened={isOpened}
             />
       </View>
+
+      <TabBar
+          selectedTabIdx={selectedTabIdx}
+          setSelectedTabIdx={setSelectedTabIdx}
+      />
+     </View> 
     
   );
 }

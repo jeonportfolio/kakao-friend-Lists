@@ -4,7 +4,7 @@
 
 export const myProfile = {
     uri: "https://png.pngtree.com/thumb_back/fh260/back_pic/03/54/06/62579986dba62df.jpg",
-    name: "지은",
+    name: "제작자",
     introduction: "inspiring day",
   };
   
