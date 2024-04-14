@@ -75,7 +75,7 @@ export default function App() {
     <View style={styles.container}>
       <FlatList
           data={isOpened ? friendProfiles : []}  //이 연산자가 friendList에서의 보여주고 열어주는 함수를 대신한다.
-          stickyHeaderIndices={[0]}
+          stickyHeaderIndices={[0]} //header가 하나이기 때문에 배열중 0번째 
           contentContainerStyle={{ paddingHorizontal: 15}}
           keyExtractor={(_, index) => index}
           ItemSeparatorComponent={ItemSeparatorComponent}
