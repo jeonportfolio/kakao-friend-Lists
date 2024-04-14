@@ -13,7 +13,7 @@ const IconButton = (props) => {
 
 export default () => {
     return(
-        <View style={{ flexDirection: "row", justifyContent: "space-between", paddingVertical: 10 }}>
+        <View style={{ flexDirection: "row", justifyContent: "space-between", paddingVertical: 10}}>
             <Text style={{ fontSize:22, fontWeight: "bold"}}>친구</Text>
         
             <View style={{ flexDirection:"row"}}>

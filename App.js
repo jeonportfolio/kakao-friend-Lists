@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {  StyleSheet, View } from 'react-native';
+import {  FlatList, StyleSheet, View } from 'react-native';
 import {  getStatusBarHeight } from 'react-native-iphone-x-helper';
 import { friendProfiles, myProfile} from './src/data';
 import Margin from './src/Margin';
@@ -26,13 +26,22 @@ export default function App() {
         setIsOpened(!isOpened);
     }
 
-  return (
-        <View style={styles.container}>
-          <View style={{ 
-            flex: 1, 
-            paddingHorizontal: 15,
-          }}>   
-            <Header/>
+    const ItemSeparatorComponent = () => <Margin height={13}/>
+    const renderItem = ({ item }) => (
+      <View > 
+          <Profile
+          uri={item.uri}
+          name={item.name}
+          introduction={item.introduction}
+          isMe={false}
+          />
+          
+      </View>
+    )
+
+    const ListHeaderComponent = () => (
+      <View style={{backgroundColor:"white"}}>
+           <Header/>
 
             <Margin height={10}/>
 
@@ -40,6 +49,7 @@ export default function App() {
               uri={myProfile.uri}
               name={myProfile.name}
               introduction={myProfile.introduction}
+              isMe={true} //내프로필과 친구리스트의 이미지 크기를 다르게 하기 위함 
             />
 
             <Margin height= {15}/>
@@ -53,6 +63,41 @@ export default function App() {
                 onPressArrow={onPressArrow}
                 isOpened={isOpened}
             />
+            
+            <Margin height={15}/>
+      </View>
+    )
+
+    const ListFooterComponent = () => <Margin height={10}/>
+
+
+  return (
+    <View style={styles.container}>
+      <FlatList
+          data={isOpened ? friendProfiles : []}  //이 연산자가 friendList에서의 보여주고 열어주는 함수를 대신한다.
+          stickyHeaderIndices={[0]}
+          contentContainerStyle={{ paddingHorizontal: 15}}
+          keyExtractor={(_, index) => index}
+          ItemSeparatorComponent={ItemSeparatorComponent}
+          renderItem={renderItem}
+          ListHeaderComponent={ListHeaderComponent}
+          showsVerticalScrollIndicator={false}
+          ListFooterComponent={ListFooterComponent}
+      />
+      <TabBar
+      selectedTabIdx={selectedTabIdx}
+      setSelectedTabIdx={setSelectedTabIdx}
+      />
+    </View>
+  )
+
+  return (
+        <View style={styles.container}>
+          <View style={{ 
+            flex: 1, 
+            paddingHorizontal: 15,
+          }}>   
+          
 
             <FriendList
               data={friendProfiles}
@@ -60,10 +105,7 @@ export default function App() {
             />
       </View>
 
-      <TabBar
-          selectedTabIdx={selectedTabIdx}
-          setSelectedTabIdx={setSelectedTabIdx}
-      />
+      
      </View> 
     
   );
