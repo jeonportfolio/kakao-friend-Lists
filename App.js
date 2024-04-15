@@ -35,7 +35,6 @@ export default function App() {
           introduction={item.introduction}
           isMe={false}
           />
-          
       </View>
     )
 
